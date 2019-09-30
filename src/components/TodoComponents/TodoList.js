@@ -5,14 +5,17 @@ import React from 'react';
 import Todo from './Todo';
 
 
+
 class TodoList extends React.Component{
     render() {
-        const {todoList} = this.props;
+        const {todoList, onTaskComplete} = this.props;
         return (
             todoList.map((todo) =>(
-             <div key={todo.id}>
-             <Todo task={todo.task}/>
-            </div>
+             <Todo 
+             onTaskComplete={onTaskComplete}
+             key={todo.id}
+             todo={todo}
+             />
         ))
       
        )

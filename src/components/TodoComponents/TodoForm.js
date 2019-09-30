@@ -9,7 +9,7 @@ class TodoForm extends React.Component {
                 value={value} 
                 type='text' placeholder='...todo' onChange={onInputChange}/>
                 <button onClick={onAddTodo}>Add Todo</button>
-                {/* <button onClick>Clear Completed</button> */}
+                <button onClick>Clear Completed</button>
             </form>
         )
     }

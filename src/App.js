@@ -52,12 +52,31 @@ class App extends React.Component {
     console.log(newTodoList);
   };
 
+  onTaskComplete = currentId => {
+  
+        let newTodoList = this.state.todos.slice();
+       newTodoList = newTodoList.map(todo => {
+          if (currentId === todo.id){
+            todo.completed = !todo.completed;
+            return todo;
+          }
+          else {
+            return todo;    
+          }
+        });
+
+        this.setState({todos: newTodoList})
+        console.log(newTodoList);
+      }
+  
+
   
   render() {
     return (
       <div>
         <h2>Welcome to your Todo App!</h2>
-        <TodoList todoList={this.state.todos} />
+        <TodoList onTaskComplete={this.onTaskComplete}
+                  todoList={this.state.todos} />
         <TodoForm onInputChange={this.onInputChange}
                   onAddTodo={this.onAddTodo}/>
       </div>
