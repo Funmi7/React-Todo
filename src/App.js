@@ -1,11 +1,12 @@
 import React from 'react';
 import TodoForm from './components/TodoComponents/TodoForm';
-
+import TodoList from './components/TodoComponents/TodoList';
 const initialtodoData = 
   {
     task: '',
     // completed: false
   } 
+
 
 class App extends React.Component {
   // you will need a place to store your state in this component.
@@ -15,38 +16,50 @@ class App extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      todos: [],
-      todoForm: initialtodoData
+      todos: [ 
+        {
+          task: 'Organize Garage',
+          id: 1528817077286,
+          completed: false
+        },
+        {
+          task: 'Bake Cookies',
+          id: 1528817084358,
+          completed: false
+        }
+    ],
+      task: ''
     }  
   }
 
   onInputChange = event => {
-    
     this.setState({
-      task: event.target.value
+      task: event.target.value 
     }   
   )
   }
 
   onAddTodo = event => {
-    event.preventDefault()
+    event.preventDefault();
     const newTodo = {
-      task: this.state.TodoForm,
+      task: this.state.task,
       id: Date.now(),
       completed: false
-    },
-    newTodoList = this.state.todos.concat(newTodo);
-    this.state(newTodoList)
-    this.state(initialtodoData)
-    }
+    };
+   const newTodoList = this.state.todos.concat(newTodo);
+    this.setState({todos: newTodoList})
+    this.setState({task : initialtodoData})
+    console.log(newTodoList);
+  };
 
   
   render() {
     return (
       <div>
         <h2>Welcome to your Todo App!</h2>
-        <TodoForm onInputChange={this.state.onInputChange}
-                  onAddTodo={this.state.onAddTodo}/>
+        <TodoList todoList={this.state.todos} />
+        <TodoForm onInputChange={this.onInputChange}
+                  onAddTodo={this.onAddTodo}/>
       </div>
     );
   }
