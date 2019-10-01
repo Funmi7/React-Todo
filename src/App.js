@@ -48,7 +48,7 @@ class App extends React.Component {
     };
    const newTodoList = this.state.todos.concat(newTodo);
     this.setState({todos: newTodoList})
-    this.setState({task : initialtodoData})
+    this.setState({task : ''})
     console.log(newTodoList);
   };
 
@@ -82,7 +82,9 @@ class App extends React.Component {
         <h2>Welcome to your Todo App!</h2>
         <TodoList onTaskComplete={this.onTaskComplete}
                   todoList={this.state.todos} />
-        <TodoForm onInputChange={this.onInputChange}
+        <TodoForm 
+                  task={this.state.task}
+                  onInputChange={this.onInputChange}
                   onAddTodo={this.onAddTodo}
                   onClearCompleted={this.onClearCompleted}/>
       </div>

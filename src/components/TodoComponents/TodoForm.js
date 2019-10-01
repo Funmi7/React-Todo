@@ -5,7 +5,7 @@ class TodoForm extends React.Component {
         const {onInputChange, onAddTodo,onClearCompleted} = this.props;
         return(
             <form>
-                <input
+                <input value ={this.props.task}
                 type='text' placeholder='...todo' onChange={onInputChange}/>
                 <button onClick={onAddTodo}>Add Todo</button>
                 <button onClick={onClearCompleted}>Clear Completed</button>
