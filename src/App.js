@@ -54,7 +54,7 @@ class App extends React.Component {
 
   onTaskComplete = currentId => {
   
-        let newTodoList = this.state.todos.slice();
+        let newTodoList = this.state.todos;
        newTodoList = newTodoList.map(todo => {
           if (currentId === todo.id){
             todo.completed = !todo.completed;
@@ -68,8 +68,13 @@ class App extends React.Component {
         this.setState({todos: newTodoList})
         console.log(newTodoList);
       }
-  
 
+      onClearCompleted = event => {
+        event.preventDefault();
+        let newTodoList = this.state.todos;
+        newTodoList = newTodoList.filter(todo => todo.completed === false);
+        this.setState({todos: newTodoList})
+      }
   
   render() {
     return (
@@ -78,7 +83,8 @@ class App extends React.Component {
         <TodoList onTaskComplete={this.onTaskComplete}
                   todoList={this.state.todos} />
         <TodoForm onInputChange={this.onInputChange}
-                  onAddTodo={this.onAddTodo}/>
+                  onAddTodo={this.onAddTodo}
+                  onClearCompleted={this.onClearCompleted}/>
       </div>
     );
   }
